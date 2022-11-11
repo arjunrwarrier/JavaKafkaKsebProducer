@@ -1,6 +1,7 @@
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.protocol.types.Field;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
@@ -27,9 +28,13 @@ public class Producer {
             try {
 
                 randomNumber = random.nextInt(high + low) + low;
+                String jsonFile = String.format("{'userid':2,'unit':"+randomNumber+"}");
                 System.out.println(randomNumber);
-                producer.send(new ProducerRecord(topic,String.valueOf(randomNumber)));
-                Thread.sleep(5000);
+                System.out.println(jsonFile);
+                producer.send(new ProducerRecord(topic,String.valueOf(jsonFile)));
+
+
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
