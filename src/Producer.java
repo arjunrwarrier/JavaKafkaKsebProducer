@@ -34,7 +34,7 @@ public class Producer {
                 producer.send(new ProducerRecord(topic,String.valueOf(jsonFile)));
 
 
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
